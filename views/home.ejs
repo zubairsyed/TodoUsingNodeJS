@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+    <main>
+        
+        <header>
+            <h1 id="todo-name">TODO LIST</h1>
+        </header>
+        <div id='container'>
+            <div>
+                <form action="/createtask" method="POST">
+
+                    <!-- input desc -->
+                    <div id="input-desc-div">
+                        <label>DESCRIPTION</label>
+                        <input type="text" name="name"  placeholder="Enter Your Task" id="task-input" required>
+                        
+                    </div>
+
+                    <!-- category -->
+                    <div id="cat-date-div">
+                        <div>
+                            <label>CATEGORY</label>
+                            <select required name="category" required>
+                                <p>Choose a Category</p>
+                                <option value="professional" name="professional">Professional</option>
+                                <option value="work" name="work">Work</option>
+                                <option value="personal" name="personal">Personal</option>
+                                <option value="home" name="home">Home</option>
+                                <option value="gym" name="gym">Gym</option>
+                                <option value="coding" name="coding">Coding</option>
+                                <option value="yoga" name="yoga">Yoga</option>
+                            </select>
+                        </div>
+
+                    <!-- due date -->
+                    <div>
+                        <label>DUE DATE</label>
+                        <input type="date" name="date" placeholder="Enter Your Task" id="task-input" required>
+                    </div>
+                </div>
+
+                <!-- div buttons -->
+                <div id="button-container">
+
+                        <button type="submit">
+                            <i class="fas fa-plus" aria-hidden="false"></i>
+                            ADD
+                        </button>
+
+                        <button id="del-but">
+                            <a href="" id="anchor">
+                                <i class="fas fa-trash-can"></i>
+                                DELETE
+                            </a>
+                        </button>
+                </div>
+                </form>
+
+                <!-- unordered lit of tasks -->
+                <div id="todos-list-container">
+            
+                    <ul id="ullist">
+                        <% for (let i of todos_List){ %>
+                            <li class="todosList" id="todo-li-id">
+                                <div class="details">
+                                    <div id="inp-desc">
+
+                                        <input type="checkbox" name="checkbox"  onclick="runn(this)" id = "<%=i._id%>">
+                                       
+                                        <div id="name-date-div">
+                                            <p id="nameli"><%= i.name%></p>
+                                            <p id="dateli">
+                                                <i class="fas fa-calendar-days"></i>
+                                                <%= i.date%>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <p id="categoryli"><%= i.category%></p>
+                                    
+                                </div>
+                            </li>
+                            
+                        <%}%>
+                    </ul>
+                </div>
+                <!-- unordered list END -->
+            </div>
+        </div>
+    
+    </main>
+
+    <script src="https://kit.fontawesome.com/5147082889.js" crossorigin="anonymous"></script>
+    <script src="./js/home.js"></script>
+</body>
+</html>
